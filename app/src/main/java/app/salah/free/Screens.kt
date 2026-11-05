@@ -321,7 +321,7 @@ fun SettingsScreen(modifier: Modifier, onChanged: () -> Unit) {
     }
     var gpsMsg by remember { mutableStateOf("") }
     val city = sp.getInt("city", 0); val method = sp.getString("method", "KARACHI")
-    @Suppress("UNUSED_EXPRESSION") v
+    val vRead = v
 
     LazyColumn(modifier.fillMaxSize(), contentPadding = PaddingValues(16.dp)) {
         item { SectionTitle("Location") }

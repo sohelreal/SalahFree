@@ -42,7 +42,7 @@ private val TABS = listOf("Prayer" to "🕌", "Qibla" to "🧭", "Quran" to "�
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun AppRoot() {
-    var tab by rememberSaveable { mutableIntStateOf(0) }
+    var tab by rememberSaveable { mutableStateOf(0) }
     var settings by rememberSaveable { mutableStateOf(false) }
     var ver by remember { mutableIntStateOf(0) } // bump to refresh screens after settings change
     Scaffold(
