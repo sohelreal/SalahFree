@@ -1,0 +1,64 @@
+name: Build APK
+
+on:
+  push:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+
+      - uses: android-actions/setup-android@v3
+
+      - uses: gradle/actions/setup-gradle@v4
+        with:
+          gradle-version: 8.7
+
+      - name: Locate project folder
+        run: |
+          F=$(find . -name settings.gradle.kts -not -path "./.git/*" | head -1)
+          if [ -z "$F" ]; then echo "settings.gradle.kts NOT FOUND. Files in repo:"; find . -maxdepth 3 -not -path "./.git/*"; exit 1; fi
+          echo "PROJECT_DIR=$(dirname "$F")" >> "$GITHUB_ENV"
+          echo "Project folder: $(dirname "$F")"
+
+      - name: Fetch full Quran (optional)
+        continue-on-error: true
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: |
+          python3 - <<'PY'
+          import json, urllib.request, os
+          URL = "https://api.alquran.cloud/v1/quran/editions/quran-uthmani,en.sahih"
+          with urllib.request.urlopen(URL, timeout=60) as r:
+              data = json.load(r)["data"]
+          out = []
+          for a, e in zip(data[0]["surahs"], data[1]["surahs"]):
+              n = a["number"]; ayahs = []
+              for i, (x, y) in enumerate(zip(a["ayahs"], e["ayahs"])):
+                  t = x["text"]
+                  if i == 0 and n not in (1, 9):
+                      p = t.split(" ")
+                      if len(p) > 4: t = " ".join(p[4:])
+                  ayahs.append({"a": t, "e": y["text"]})
+              out.append({"n": n, "name": a["englishName"], "ar": a["name"].replace("سورة", "").strip(),
+                          "en": a["englishNameTranslation"], "ayahs": ayahs})
+          assert len(out) == 114
+          os.makedirs("app/src/main/assets", exist_ok=True)
+          json.dump(out, open("app/src/main/assets/quran.json", "w", encoding="utf-8"), ensure_ascii=False)
+          print("Quran written:", len(out), "surahs")
+          PY
+
+      - name: Build debug APK
+        working-directory: ${{ env.PROJECT_DIR }}
+        run: gradle :app:assembleDebug --no-daemon --stacktrace
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: SalahFree-debug-apk
+          path: "**/app-debug.apk"
