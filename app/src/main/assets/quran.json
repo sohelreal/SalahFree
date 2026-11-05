@@ -1,0 +1,62 @@
+[
+ {
+  "n": 1,
+  "name": "Al-Fatihah",
+  "ar": "الفاتحة",
+  "en": "The Opening",
+  "ayahs": [
+   {
+    "a": "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    "e": "In the name of Allah, the Entirely Merciful, the Especially Merciful."
+   },
+   {
+    "a": "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    "e": "[All] praise is [due] to Allah, Lord of the worlds -"
+   },
+   {
+    "a": "الرَّحْمَٰنِ الرَّحِيمِ",
+    "e": "The Entirely Merciful, the Especially Merciful,"
+   },
+   {
+    "a": "مَالِكِ يَوْمِ الدِّينِ",
+    "e": "Sovereign of the Day of Recompense."
+   },
+   {
+    "a": "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+    "e": "It is You we worship and You we ask for help."
+   },
+   {
+    "a": "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+    "e": "Guide us to the straight path -"
+   },
+   {
+    "a": "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+    "e": "The path of those upon whom You have bestowed favor, not of those who have earned [Your] anger or of those who are astray."
+   }
+  ]
+ },
+ {
+  "n": 112,
+  "name": "Al-Ikhlas",
+  "ar": "الإخلاص",
+  "en": "Sincerity",
+  "ayahs": [
+   {
+    "a": "قُلْ هُوَ اللَّهُ أَحَدٌ",
+    "e": "Say, \"He is Allah, [who is] One,"
+   },
+   {
+    "a": "اللَّهُ الصَّمَدُ",
+    "e": "Allah, the Eternal Refuge."
+   },
+   {
+    "a": "لَمْ يَلِدْ وَلَمْ يُولَدْ",
+    "e": "He neither begets nor is born,"
+   },
+   {
+    "a": "وَلَمْ يَكُنْ لَهُ كُفُوًا أَحَدٌ",
+    "e": "Nor is there to Him any equivalent.\""
+   }
+  ]
+ }
+]
